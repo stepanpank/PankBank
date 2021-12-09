@@ -1,0 +1,37 @@
+﻿@model PANKBANK.Models.DepositTablModel
+@{
+    ViewBag.Title = Model.Lastname;
+}
+<h2>Клієнт @Model.Firstname</h2>
+<div>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Ідентифікатор</th>
+                <th>Ім'я</th>
+                <th>Прізвище</th>
+                <th>Сума  ($)</th>
+                <th>Річні  (%)</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            <tr>
+                <td>@Model.Id</td>
+                <td>@Model.Firstname</td>
+                <td>@Model.Lastname</td>
+                <td>@Model.Total</td>
+                <td>@Model.Persent</td>
+            </tr>
+
+        </tbody>
+    </table>
+
+    @{
+        int sum = Model.Total * Model.Persent / 100;
+        string data = Convert.ToString(sum);
+        ViewData["Massege"] = data;
+    }
+    <h5>Банк повинен віддати цьому клієнту: @ViewData["Massege"]$ </h5>
+
+</div>

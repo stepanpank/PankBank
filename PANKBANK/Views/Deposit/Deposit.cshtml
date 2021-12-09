@@ -1,0 +1,56 @@
+﻿@model IEnumerable<PANKBANK.Models.DepositTablModel>
+@{
+    ViewBag.Title = "Deposit";
+}
+<a  asp-controller="Deposit" asp-action="Add">Додати клієнта</a>
+<h3>Таблиця клієнтів</h3>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Ім'я</th>
+            <th>Прізвище</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            int sum = 0;
+            int credit = 0;
+            int income = 0;
+        }
+        @foreach (var item in Model)
+        {
+            sum += 1;
+            credit += item.Total;
+            income += item.Total * item.Persent / 100;
+
+            <tr>
+                <td>@item.Firstname</td>
+                <td>@item.Lastname</td>
+
+                <td>
+                    <a class="btn btn-sm btn-outline-secondary" asp-action="Details" asp-controller="Deposit" asp-route-id="@item.Id">Повна інфірмація</a>
+                </td>
+                <td>
+                    <form asp-controller="Deposit" asp-action="Deposit" method="post">
+                    <div class="form-group">
+                        <input type="submit" class="btn btn-sm btn-outline-secondary" value="Вилучити з бази даних" asp-route-id="@item.Id" />
+                    </div>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@{
+    string data = Convert.ToString(sum);
+    ViewData["Massege"] = data;
+    string data1 = Convert.ToString(credit);
+    ViewData["Massege1"] = data1;
+    string data2 = Convert.ToString(income);
+    ViewData["Massege2"] = data2;
+}
+<div>
+    <p><h5>Кількість клієнтів : @ViewData["Massege"]</h5>
+    <p><h5>Сума виданих депозитів : @ViewData["Massege1"]$</h5>
+    <p><h5>Сума потрібних виплат : @ViewData["Massege2"]$</h5>
+</div>

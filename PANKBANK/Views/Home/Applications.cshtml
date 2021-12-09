@@ -1,0 +1,39 @@
+﻿@model IEnumerable<PANKBANK.Models.GetAppli>
+@{
+    ViewBag.Title = "Credit";
+}
+<h3>Таблиця заявок</h3>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Ідентифікатор</th>
+            <th>Ім'я</th>
+            <th>Прізвище</th>
+            <th>Сума  ($)</th>
+            <th>Функція</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+           
+
+        <tr>
+            <td>@item.Id</td>
+            <td>@item.Firstname</td>
+            <td>@item.Lastname</td>
+            <td>@item.Total</td>
+            <td>@item.CredOrDep</td>
+
+            <td>
+                <form asp-controller="Home" asp-action="Aplications" method="post">
+                    <div class="form-group">
+                        <input type="submit" class="btn btn-sm btn-outline-secondary" value="Вилучити з бази даних" asp-route-id="@item.Id" />
+                    </div>
+                </form>
+
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,26 @@
+﻿@model PANKBANK.Models.CreditTablModel
+@{
+    ViewBag.Title = "Add";
+}
+<form asp-action="Add" asp-controller="Credit" >
+    
+    <div class="form-group">
+        <label asp-for="Firstname" class="control-label">Ім'я</label>
+        <input type="text" asp-for="Firstname" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Lastname" class="control-label">Прізвище</label>
+        <input type="text" asp-for="Lastname" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Total" class="control-label">Сума</label>
+        <input type="number" asp-for="Total" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Persent" class="control-label">Річні</label>
+        <input type="number" asp-for="Persent" class="form-control" />
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Записати до бази" class="btn btn-default" />
+    </div>
+</form>
